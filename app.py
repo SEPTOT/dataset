@@ -22,7 +22,6 @@ genre_mapping = {
 }
 
 st.title("🎵 Genre Music Prediction App")
-
 st.markdown("Upload informasi musik favoritmu dan dapatkan prediksi genre!")
 
 # Input user
@@ -55,11 +54,7 @@ if st.button("Predict Genre"):
         data = np.array([[song_title_enc, artist_enc, release_year, duration,
                           listened_year, listened_month, listened_day, platform_enc]])
 
-        st.write(f"Encoded values: song_title_enc={song_title_enc}, artist_enc={artist_enc}, platform_enc={platform_enc}")
-        st.write(f"Feature array shape: {data.shape}")
-
         data_scaled = scaler.transform(data)
-
         prediction = model.predict(data_scaled)
         predicted_genre = genre_mapping.get(int(prediction[0]), f"Unknown ({prediction[0]})")
 
